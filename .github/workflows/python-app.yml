@@ -1,0 +1,749 @@
+import tkinter as tk 
+from tkinter import messagebox
+from tkinter import *
+import pandas as pd
+import numpy as np
+from tabulate import tabulate
+classes = ['Computer Science Essentials', 'Computer Science Principles', 'Computer Science Applications', 'Info Tech', 'Engineering Design and Development', 'Cisco CCNA', 'Introduction to Engineering Design', 'Aerospace Engineering', 'Computer Integrated Manufacturing', 'Unmanned Flight Safety and Operation', 'Engineering Design & Development', 'Principles of Biomedical Science', 'Human Body Systems', 'Medical Interventions', 'Foundations of Nursing I', 'Allied Health @ Summit Tech', 'Biomedical Innovations', 'Foundations of Nursing II', 'Intro to Physical Therapy and Sports Medicine @ MCC', 'Vet Capstone @ MCC Online']
+
+user_classes = []
+
+root = tk.Tk()
+
+
+
+canvas1 = tk.Canvas(root, width=800, height=600)
+canvas1.pack()
+canvas1.pack(fill=tk.BOTH, expand=True)
+canvas1.configure(bg='black')
+
+
+#1st and 2nd are the beginning's x and y, 3rd and 4th are the tip's x and y
+
+
+canvas1.create_line(325, 50, 325, 340, width = 10,  arrow=tk.LAST, fill='#72677d')
+
+
+canvas1.create_line(425, 70, 425, 340, width = 10,  arrow=tk.LAST, fill='#72677d')
+
+
+#Engineering Arrows
+canvas1.create_line(990, 50, 990, 340, width = 10, arrow=tk.LAST, fill='#72677d')
+
+canvas1.create_line(890, 50, 890, 340, width = 10, arrow=tk.LAST, fill='#72677d')
+
+
+
+#Medical Science Arrows
+canvas1.create_line(1460, 25, 1460, 100, width = 10,  arrow=tk.LAST, fill='#72677d')
+
+canvas1.create_line(1350, 25, 1430, 100, width = 10,  arrow=tk.LAST, fill='#72677d')
+
+canvas1.create_line(1675, 25, 1570, 100, width = 10,  arrow=tk.LAST, fill='#72677d')
+
+canvas1.create_line(1550, 25, 1550, 100, width = 10,  arrow=tk.LAST, fill='#72677d')
+
+canvas1.create_line(1525, 100, 1525, 200, width = 10,  arrow=tk.LAST, fill='#72677d')
+
+canvas1.create_line(1425, 150, 1425, 200, width = 10,  arrow=tk.LAST, fill='#72677d')
+
+canvas1.create_line(1600, 150, 1600, 200, width = 10,  arrow=tk.LAST, fill='#72677d')
+
+canvas1.create_line(1675, 250, 1675, 280, width = 10,  arrow=tk.LAST, fill='#72677d')
+
+canvas1.create_line(1515, 210, 1515, 280, width = 10,  arrow=tk.LAST, fill='#72677d')
+
+canvas1.create_line(1580, 210, 1580, 280, width = 10,  arrow=tk.LAST, fill='#72677d')
+
+canvas1.create_line(1475, 210, 1400, 280, width = 10,  arrow=tk.LAST, fill='#72677d')
+
+canvas1.create_line(1350, 325, 1350, 380, width = 10,  arrow=tk.LAST, fill='#72677d')
+
+canvas1.create_line(1450, 325, 1450, 380, width = 10,  arrow=tk.LAST, fill='#72677d')
+
+canvas1.create_line(1540, 325, 1540, 380, width = 10,  arrow=tk.LAST, fill='#72677d')
+
+canvas1.create_line(1600, 325, 1600, 380, width = 10,  arrow=tk.LAST, fill='#72677d')
+
+canvas1.create_line(1700, 325, 1700, 380, width = 10,  arrow=tk.LAST, fill='#72677d')
+
+
+#Create a Text widget
+
+text= Text(root, height= 10,width= 40)
+text.pack()
+text.place(x=810, y=470)
+
+for user_classes in user_classes:
+  text.insert(END, user_classes + '\n')
+
+
+def exit_application():
+    msg_box = tk.messagebox.askyesno('Take this class?', 
+"""Course number: 8182 
+Prerequisite: N/A  
+Credit Amount: 1
+Grade: 9""",icon='warning')
+   
+    if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'You have selected this class.')
+        if classes[0] not in user_classes: 
+          user_classes.append(classes[0])
+          text.insert(END, classes[0] + '\n') 
+
+    elif msg_box == False:
+         tk.messagebox.showinfo('No', 'Continue on.')
+
+
+button1 = tk.Button(root, text='Computer Science Essentials', command=exit_application, bg='purple', fg='white', width=23,height=1) 
+canvas1.create_window(380, 110, window=button1)
+
+
+
+def CSP():
+    pmsg_box = tk.messagebox.showinfo('Prerequisites', """Black labels are prerequisites""", icon='warning')
+    button1.configure(bg="black", fg="white")
+
+    msg_box = tk.messagebox.askyesno('Computer Science Principles', 
+"""
+Course Number: 8172    
+Prerequisite: Computer Science Essentials 
+Credit Amount: 1
+Grade: 10 """, icon='warning')
+    if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'You have selected this class.') 
+        button1.configure(bg="purple", fg="white")
+
+        if classes[1] not in user_classes: 
+          user_classes.append(classes[1])
+          text.insert(END, classes[1] + '\n')
+    elif msg_box == False:
+        tk.messagebox.showinfo('No', 'Continue on.')
+        button1.configure(bg="purple", fg="white")
+
+
+
+button2 = tk.Button(root, text='Computer Science Principles', command=CSP, bg='purple', fg='white', width=23,height=1)
+canvas1.create_window(380, 160, window=button2)
+
+def CSA():
+  pmsg_box2 = tk.messagebox.showinfo('Prerequisites', "Black labels are prerequisites", icon='warning')
+  button1.configure(bg="black", fg="white")
+  button2.configure(bg="black", fg="white")
+  
+  msg_box = tk.messagebox.askyesno('Computer Science Application', 
+"""
+Course Number: 8174 
+Prerequisite: Computer Science principles and Computer Science Essentials 
+Credit Amount: 1
+Grade: 11""", 
+                                                         icon='warning')
+  if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'You have selected this class.')
+        if classes[2] not in user_classes: user_classes.append(classes[2])
+        button1.configure(bg="purple", fg="white")
+        button2.configure(bg="purple", fg="white")
+        text.insert(END, classes[2] + '\n')
+  elif msg_box == False:
+        tk.messagebox.showinfo('No', 'Continue on.')
+        button1.configure(bg="purple", fg="white")
+        button2.configure(bg="purple", fg="white")
+    
+    
+button3 = tk.Button(root, text='Computer \nScience \nApplication', command=CSA, bg='purple', fg='white', width=7,height=3)
+canvas1.create_window(335, 225, window=button3)
+
+def Info_Tech():
+  pmsg_box3 = tk.messagebox.showinfo('Prerequisites', "Black labels are prerequisites", icon='warning')
+  button1.configure(bg="black", fg="white")
+  button2.configure(bg="black", fg="white")
+  
+  msg_box = tk.messagebox.askyesno('Info Tech', 
+"""
+Course Number: 3200 
+Prerequisite: Computer Science principles and Computer Science Essentials 
+Credit Amount: 2
+Grade: 11 """, 
+                                                         icon='warning')
+  if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'You have selected this class.')
+        if classes[3] not in user_classes: user_classes.append(classes[3])
+        button1.configure(bg="purple", fg="white")
+        button2.configure(bg="purple", fg="white")
+        text.insert(END, classes[3] + '\n')
+  elif msg_box == False:
+        tk.messagebox.showinfo('No', 'Continue on.')
+        button1.configure(bg="purple", fg="white")
+        button2.configure(bg="purple", fg="white")
+
+button4 = tk.Button(root, text='Info Tech', command=Info_Tech, bg='purple', fg='white', width=7,height=3)
+canvas1.create_window(423, 225, window=button4)
+
+def EDD():
+  pmsg_box4 = tk.messagebox.showinfo('Prerequisites', "Black labels are prerequisites", icon='warning')
+  button1.configure(bg="black", fg="white")
+  button2.configure(bg="black", fg="white")
+  button3.configure(bg="black", fg="white")
+  msg_box = tk.messagebox.askyesno('EDD', 
+"""
+Course Number: 8112 
+Prerequisite: Principles of Engineering or Computer Science Applications, Computer Science Principles,Computer Science Essentials 
+Credit Amount: 1
+Grade: 12 """, 
+                                                         icon='warning')
+  if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'You have selected this class.')
+        if classes[4] not in user_classes: user_classes.append(classes[4])
+        button1.configure(bg="purple", fg="white")
+        button2.configure(bg="purple", fg="white")
+        button3.configure(bg="purple", fg="white")
+        text.insert(END, classes[4] + '\n')
+  elif msg_box == False:
+        tk.messagebox.showinfo('No', 'Continue on.')
+        button1.configure(bg="purple", fg="white")
+        button2.configure(bg="purple", fg="white")
+        button3.configure(bg="purple", fg="white")
+
+button5 = tk.Button(root, text='Engineering Design\n & Development', command=EDD, bg='purple', fg='white', width=12,height=3)
+canvas1.create_window(314, 300, window=button5)
+
+def Cisco_CCNA():
+  pmsg_box5 = tk.messagebox.showinfo('Prerequisites', "Black labels are prerequisites", icon='warning')
+  button1.configure(bg="black", fg="white")
+  button2.configure(bg="black", fg="white")
+  button4.configure(bg="black", fg="white")
+  msg_box = tk.messagebox.askyesno('Cisco_CCNA', 
+"""
+Course number: 8177 
+Prerequisite: Information Technology Essentials or Network Security, Computer Science Principles, & Computer Science Essentials 
+Credit Amount: 4
+Grade: 12 """,    icon='warning')
+  if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'You have selected this class.')
+        if classes[5] not in user_classes: user_classes.append(classes[5])
+        button1.configure(bg="purple", fg="white")
+        button2.configure(bg="purple", fg="white")
+        button4.configure(bg="purple", fg="white")
+        text.insert(END, classes[5] + '\n')
+  elif msg_box == False:
+        tk.messagebox.showinfo('No', 'Continue on.')
+        button1.configure(bg="purple", fg="white")
+        button2.configure(bg="purple", fg="white")
+        button4.configure(bg="purple", fg="white")
+
+button6 = tk.Button(root, text='Cisco CCNA', command=Cisco_CCNA, bg='purple', fg='white', width=8,height=3)
+canvas1.create_window(424, 300, window=button6)
+
+
+def User_Classes(): 
+
+  df = pd.DataFrame(user_classes)
+
+  df.style.set_properties(**{'text-align': 'left'})
+  df2 = tabulate(df, showindex=False, headers=df.columns)
+
+
+  tk.messagebox.showinfo('User_Classes', format(df2), icon='warning')
+    
+
+
+button6 = tk.Button(root, text='Your Classes', command=User_Classes, bg='dark blue', fg='white', width=23,height=1)
+canvas1.create_window(620, 550, window=button6)
+
+
+# Engineering
+
+
+def exit_application():
+    msg_box = tk.messagebox.askyesno('Take this class?', 
+"""
+Course number: 8100 
+Prerequisite: N/A  
+Credit Amount: 1
+Grade: 9""",icon='warning')
+    if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'You have selected this class.')
+        if classes[6] not in user_classes: user_classes.append(classes[6])
+        text.insert(END, classes[6] + '\n')
+          
+    elif msg_box == False:
+         tk.messagebox.showinfo('No', 'Continue on.')
+
+
+button7 = tk.Button(root,text='Introduction to Engineering Design', command=exit_application, bg='purple', fg='white', width=24,height=1) 
+
+canvas1.create_window(940, 110, window=button7)
+
+def AE():
+    pmsg_box6 = tk.messagebox.showinfo('Prerequisites', "Black labels are prerequisites", icon='warning')
+    button7.configure(bg="black", fg="white")
+    
+    msg_box = tk.messagebox.askyesno('Aerospace Engineering', 
+"""
+Course Number: 8116    
+Prerequisite: Introduction to Engineering Design 
+Credit Amount: 1
+Grade: 10""", 
+                                                         icon='warning')
+    if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'You have selected this class.')
+        button7.configure(bg="purple", fg="white")
+        if classes[7] not in user_classes: 
+          user_classes.append(classes[7])
+          text.insert(END, classes[7] + '\n')
+      
+    elif msg_box == False:
+        tk.messagebox.showinfo('No', 'Continue on.')
+        button7.configure(bg="purple", fg="white")
+
+
+button8 = tk.Button(root, text='Aerospace Engineering', command=AE, bg='purple', fg='white', width=23,height=1)
+
+canvas1.create_window(940, 160, window=button8)
+
+
+def CIM():
+    pmsg_box7 = tk.messagebox.showinfo('Prerequisites', "Black labels are prerequisites", icon='warning')
+    button7.configure(bg="black", fg="white")
+    msg_box = tk.messagebox.askyesno('Computer Integrated Manufacturing', 
+"""
+Course Number: 8119    
+Prerequisite: Introduction to Engineering Design and Aerospace Engineering
+Credit Amount: 1
+Grade: 11""", 
+                                                         icon='warning')
+    if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'You have selected this class.')
+        if classes[8] not in user_classes: user_classes.append(classes[8])
+        text.insert(END, classes[8] + '\n')
+        button7.configure(bg="purple", fg="white")
+      
+    elif msg_box == False:
+        tk.messagebox.showinfo('No', 'Continue on.')
+        button7.configure(bg="purple", fg="white")
+      
+button9 = tk.Button(root, text='Computer\n Integrated \nManufacturing', command=CIM, bg='purple', fg='white', width=10,height=4)
+
+canvas1.create_window(863, 235, window=button9)
+
+
+def UFSO():
+    msg_box = tk.messagebox.askyesno('Unmanned Flight Safety & Operation', 
+"""
+Course Number: 8826    
+Prerequisite: N/A
+Credit Amount: 1
+Grade: 11 """, 
+                                                         icon='warning')
+    if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'You have selected this class.')
+        if classes[9] not in user_classes: user_classes.append(classes[9])
+        text.insert(END, classes[9] + '\n')
+
+      
+    elif msg_box == False:
+        tk.messagebox.showinfo('No', 'Continue on.')
+
+
+
+button10 = tk.Button(root, text='Unmanned \nFlight\n Safety & \nOperation', command=UFSO, bg='purple', fg='white', width=10,height=4)
+
+canvas1.create_window(980, 235, window=button10)
+
+
+def EDD():
+    pmsg_box9 = tk.messagebox.showinfo('Prerequisites', "Black labels are prerequisites", icon='warning')
+    button3.configure(bg="black", fg="white")
+
+    msg_box = tk.messagebox.askyesno('EDD', 
+"""
+Course Number: 8112 
+Prerequisite: Computer Science Applications
+Credit Amount: 1
+Grade: 12 """, 
+                                                         icon='warning')
+    if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'You have selected this class.')
+        button3.configure(bg="purple", fg="white")
+
+        if classes[10] not in user_classes: 
+          user_classes.append(classes[10])
+          text.insert(END, classes[10] + '\n')
+    elif msg_box == False:
+        button3.configure(bg="purple", fg="white")
+
+        tk.messagebox.showinfo('No', 'Continue on.')
+
+
+button11 = tk.Button(root, text='Engineering Design and Development', command=EDD, bg='purple', fg='white', width=26,height=1)
+canvas1.create_window(940, 300, window=button11)
+
+
+#Science pathway
+
+def PBS():
+    
+    msg_box = tk.messagebox.askyesno('Principles of Biomedical Science', 
+"""
+Course Number: 8710 
+Prerequisite: N/A
+Credit Amount: 1
+Grade: 9""", 
+                                                         icon='warning')
+    if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'You have selected this class.')
+        if classes[11] not in user_classes: 
+          user_classes.append(classes[11])
+          text.insert(END, classes[11] + '\n')
+    elif msg_box == False:
+        tk.messagebox.showinfo('No', 'Continue on.')
+
+
+button12 = tk.Button(root, text='Principles of Biomedical Science', command=PBS, bg='purple', fg='white', width=26,height=1)
+canvas1.create_window(1520, 110, window=button12)
+
+def HBS():
+    pmsg_box10 = tk.messagebox.showinfo('Prerequisites', "Black labels are prerequisites", icon='warning')
+    button12.configure(bg="black", fg="white")
+    msg_box = tk.messagebox.askyesno('Human Body Systems', 
+"""
+Course Number: 8712 
+Prerequisite: Principles of Biomedical Science
+Credit Amount: 1
+Grade: 10""", 
+                                                         icon='warning')
+    if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'You have selected this class.')
+        if classes[12] not in user_classes: 
+          user_classes.append(classes[12])
+          text.insert(END, classes[12] + '\n')
+        button12.configure(bg="purple", fg="white")
+    elif msg_box == False:
+        tk.messagebox.showinfo('No', 'Continue on.')
+        button12.configure(bg="purple", fg="white")
+
+button13 = tk.Button(root, text='Human Body Systems', command=HBS, bg='purple', fg='white', width=26,height=1)
+canvas1.create_window(1520, 160, window=button13)
+
+def MI():
+    pmsg_box10 = tk.messagebox.showinfo('Prerequisites', "Black labels are prerequisites", icon='warning')
+    button12.configure(bg="black", fg="white")
+    button13.configure(bg="black", fg="white")
+    
+    msg_box = tk.messagebox.askyesno('Medical Interventions', 
+"""
+Course Number: 8604 
+Prerequisite: Human Body Systems
+Credit Amount: 1
+Grade: 11""", 
+                                                         icon='warning')
+    if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'You have selected this class.')
+        button12.configure(bg="purple", fg="white")
+        button13.configure(bg="purple", fg="white")
+        if classes[13] not in user_classes: 
+          user_classes.append(classes[13])
+          text.insert(END, classes[13] + '\n')
+    elif msg_box == False:
+        tk.messagebox.showinfo('No', 'Continue on.')
+        button12.configure(bg="purple", fg="white")
+        button13.configure(bg="purple", fg="white")
+
+button14 = tk.Button(root, text='Medical\n Interventions', command=MI, bg='purple', fg='white', width=9,height=3)
+canvas1.create_window(1449, 230, window=button14)
+
+def FNI():
+
+  msg_box = tk.messagebox.askyesno('Foundations of Nursing I ', 
+"""
+Course Number: 8514 
+Prerequisite:Minimum 2.0 GPA; 90% attendance; grade of C or better in Biology; reading, writing, and math at minimum 10th grade level.
+Credit Amount: 4
+Grade: 11""", 
+                                                         icon='warning')
+  if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'You have selected this class.')
+        if classes[14] not in user_classes: 
+          user_classes.append(classes[14])
+          text.insert(END, classes[14] + '\n')
+
+  elif msg_box == False:
+        tk.messagebox.showinfo('No', 'Continue on.')
+
+
+
+button15 = tk.Button(root, text='Foundations of\n Nursing I', command=FNI, bg='purple', fg='white', width=10,height=3)
+canvas1.create_window(1550, 230, window=button15)
+
+def AH():
+
+  msg_box = tk.messagebox.askyesno('Allied Health', 
+"""
+Course Number: 8613 
+Prerequisite:Minimum 2.5 GPA; 90% attendance; a grade of C or better in Algebra I and a grade of C or better in Biology or Chemistry.
+Credit Amount: 4
+Grade 11""", 
+                                                         icon='warning')
+  if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'You have selected this class.')
+        if classes[15] not in user_classes: 
+          user_classes.append(classes[15])
+          text.insert(END, classes[15] + '\n')
+
+  elif msg_box == False:
+        tk.messagebox.showinfo('No', 'Continue on.')
+
+
+button16 = tk.Button(root, text='Allied Health', command=AH, bg='purple', fg='white', width=8,height=3)
+canvas1.create_window(1650, 230, window=button16)
+
+def BI():
+  pmsg_box13 = tk.messagebox.showinfo('Prerequisites', "Black labels are prerequisites", icon='warning')
+  button12.configure(bg="black", fg="white")
+  button13.configure(bg="black", fg="white")
+  button14.configure(bg="black", fg="white")
+
+  msg_box = tk.messagebox.askyesno('Biomedical Innovations', 
+"""
+Course Number: 8607 
+Prerequisite:Principles of Biomedical Science, Human Body Systems, Medical Interventions, Foundations of Nursing I and Allied Health
+Credit Amount: 1
+Grade: 12""", 
+                                                         icon='warning')
+  if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'You have selected this class.')
+        button12.configure(bg="purple", fg="white")
+        button13.configure(bg="purple", fg="white")
+        button14.configure(bg="purple", fg="white")
+
+        if classes[16] not in user_classes: 
+          user_classes.append(classes[16])
+          text.insert(END, classes[16] + '\n')
+  elif msg_box == False:
+        tk.messagebox.showinfo('No', 'Continue on.')
+        button12.configure(bg="purple", fg="white")
+        button13.configure(bg="purple", fg="white")
+        button14.configure(bg="purple", fg="white")
+
+
+button17 = tk.Button(root, text='Biomedical\n Innovations', command=BI, bg='purple', fg='white', width=9,height=3)
+canvas1.create_window(1384, 310, window=button17)
+
+def FNII():
+    pmsg_box13 = tk.messagebox.showinfo('Prerequisites', "Black labels are prerequisites", icon='warning')
+
+    button15.configure(bg="black", fg="white")
+
+    msg_box = tk.messagebox.askyesno('Foundations of Nursing II ', 
+"""
+Course Number: 8529 
+Prerequisite: Foundations of Nursing I
+Credit Amount: 4
+Grade: 12""", 
+                                                         icon='warning')
+    if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'You have selected this class.')
+        if classes[17] not in user_classes: 
+          user_classes.append(classes[17])
+          text.insert(END, classes[17] + '\n')
+        button15.configure(bg="purple", fg="white")
+
+    elif msg_box == False:
+        button15.configure(bg="purple", fg="white")
+
+        tk.messagebox.showinfo('No', 'Continue on.')
+
+button18 = tk.Button(root, text='Foundations of\n Nursing II ', command=FNII, bg='purple', fg='white', width=10,height=3)
+canvas1.create_window(1682, 310, window=button18)
+
+def IPT():
+
+    msg_box = tk.messagebox.askyesno('Intro to Physical Therapy and Sports Medicine', 
+"""    
+Course Number:  8537 
+Prerequisite:Min 2.0 GPA; 90% attendance record; Biology I with C or Better; reading, writing, and math at 10th grade level. Anatomy and Physiology, Intro to Health Careers, Chemistry, Psychology are recommended,
+Credit Amount: 4
+Grade: 12""", 
+                                                         icon='warning')
+    if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'You have selected this class.')
+        if classes[18] not in user_classes: 
+          user_classes.append(classes[18])
+          text.insert(END, classes[18] + '\n')
+    elif msg_box == False:
+        tk.messagebox.showinfo('No', 'Continue on.')
+
+button19 = tk.Button(root, text='Intro to\n Physical Therapy', command=IPT, bg='purple', fg='white', width=10,height=3)
+canvas1.create_window(1584, 310, window=button19)
+
+def VC():
+
+    msg_box = tk.messagebox.askyesno('Veterinary Capstone ', """
+Course Number: 8630
+Prerequisite: Medical Innovations
+Credit Amount: 4
+Grade: 12""", 
+                                                         icon='warning')
+    if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'You have selected this class.')
+
+        if classes[19] not in user_classes: 
+          user_classes.append(classes[19])
+          text.insert(END, classes[19] + '\n')
+    elif msg_box == False:
+
+        tk.messagebox.showinfo('No', 'Continue on.')
+
+button20 = tk.Button(root, text='Veterinary \nCapstone ', command=VC, bg='purple', fg='white', width=8,height=3)
+canvas1.create_window(1480, 310, window=button20)
+
+def reset_button():
+    msg_box = tk.messagebox.askyesno('Clear?', 
+"""Would you like to clear your selections?""",icon='warning')
+    if msg_box == True:
+        tk.messagebox.showinfo('Yes', 'Selections cleared.')
+        user_classes.clear()
+        text.delete("1.0", "end")
+        text.delete("2.0", "end")
+        text.delete("3.0", "end")
+        text.delete("4.0", "end")
+        text.delete("5.0", "end")
+        text.delete("6.0", "end")
+        text.delete("7.0", "end")
+        text.delete("8.0", "end")
+        text.delete("9.0", "end")
+        text.delete("10.0", "end")
+        text.delete("11.0", "end")
+        text.delete("12.0", "end")
+        text.delete("13.0", "end")
+        text.delete("14.0", "end")
+        text.delete("15.0", "end")
+        text.delete("16.0", "end")
+        text.delete("17.0", "end")
+        text.delete("18.0", "end")
+        text.delete("19.0", "end")
+        text.delete("20.0", "end")
+    elif msg_box == False:
+         tk.messagebox.showinfo('No', 'Classes remain')
+button21 = tk.Button(root, text='Reset', command=reset_button, bg='violet', fg='black', width=17,height=1) 
+canvas1.create_window(1250, 590, window=button21)
+
+
+# Pathways
+
+def programming():
+    msg_box = tk.messagebox.showinfo('Information', 
+"""Software Quality Assurance Engineer, Computer Programmer, Software Developer, App Developer""",icon='warning')   
+button22 = tk.Button(root, text='Programming & \nSoftware \nDevelopment', command=programming, bg='Dark Blue', fg='white', width=10,height=3) 
+canvas1.create_window(308, 40, window=button22)
+
+
+def Computer():
+    msg_box = tk.messagebox.showinfo('Information', 
+"""Network Administrator,Programmer, Analyst,Engineer """,icon='warning')   
+button23 = tk.Button(root, text='Computer \nNetworking \nSytems', command=Computer, bg='Dark Blue', fg='white', width=8,height=3) 
+canvas1.create_window(430, 40, window=button23)
+
+#Engineering
+
+def Engineer():
+    msg_box = tk.messagebox.showinfo('Information', 
+"""Civil, Electrical, Mechanical, & Structural Engineers """,icon='warning')   
+button24 = tk.Button(root, text='Engineering', command=Engineer, bg='Dark Blue', fg='white', width=8,height=3) 
+canvas1.create_window(890, 40, window=button24)
+
+def Aviation():
+    msg_box = tk.messagebox.showinfo('Information', 
+"""Pilot, AirCraft Mechanic Air traffic Controller""",icon='warning')   
+button25 = tk.Button(root, text='Aviation', command=Aviation, bg='Dark Blue', fg='white', width=8,height=3) 
+canvas1.create_window(991, 40, window=button25)
+
+#Science
+
+def Medical():
+    msg_box = tk.messagebox.showinfo('Information', 
+"""Doctor, Radiologist, Pharmacist, Chiropractor, surgeon""",icon='warning')   
+button26 = tk.Button(root, text='Medical', command=Medical, bg='Dark Blue', fg='white', width=8,height=3) 
+canvas1.create_window(1380, 40, window=button26)
+
+def Nursing_and_Allied_Health():
+    msg_box = tk.messagebox.showinfo('Information', 
+"""Nurse, Nurse Assistant, Nurse Tech, Nurse Practitioner, Certified Medical Technician, Sonographer, Radiation Tech, Pharmacy Tech""",icon='warning')   
+button27 = tk.Button(root, text=' Nursing\nand\nAllied Health', command= Nursing_and_Allied_Health, bg='Dark Blue', fg='white', width=8,height=3) 
+canvas1.create_window(1460, 40, window=button27)
+
+def Athletic_Training_Physical_Therapy():
+    msg_box = tk.messagebox.showinfo('Information', 
+"""Athletic Tainer, Athletic Trainer Assistant, Sports Medicine, Sports Medicne Assistant, Physical Therapist, Physical Therapist Assistant, Occupational Therapist, Occupitional Therapisy Assistant, Recreational Therapist, Recreational Therapist Assistant""",icon='warning')   
+button28 = tk.Button(root, text='Athletic\ntraining\nPhysical\nTherapy', command= Nursing_and_Allied_Health, bg='Dark Blue', fg='white', width=8,height=4) 
+canvas1.create_window(1548, 40, window=button28)
+
+
+def Veterinary():
+    msg_box = tk.messagebox.showinfo('Information', 
+"""Veterinarian, Vet Tech""",icon='warning')   
+button29 = tk.Button(root, text='Veterinary', command=Veterinary, bg='Dark Blue', fg='white', width=8,height=3) 
+canvas1.create_window(1640, 40, window=button29)
+
+#IRC
+
+def PLTW():
+    msg_box = tk.messagebox.showinfo('Information', 
+"""PLTW EOC DUAL CREDIT""",icon='warning')   
+button30 = tk.Button(root, text='PLTW EOC', command=PLTW, bg='Dark Blue', fg='white', width=8,height=3) 
+canvas1.create_window(308, 368, window=button30)
+
+def IRC():
+    msg_box = tk.messagebox.showinfo('Information', 
+"""DUAL CREDIT IRC'S - A+, NETWORK +, CCNA""",icon='warning')   
+button31 = tk.Button(root, text='IRC', command=IRC, bg='Dark Blue', fg='white', width=8,height=3) 
+canvas1.create_window(423, 368, window=button31)
+
+#Engineering
+
+def PLTW():
+    msg_box = tk.messagebox.showinfo('Information', 
+"""PLTW EOC DUAL CREDIT""",icon='warning')   
+button32 = tk.Button(root, text='PLTW EOC', command=PLTW, bg='Dark Blue', fg='white', width=8,height=3) 
+canvas1.create_window(890, 368, window=button32)
+
+def IRCFAA():
+    msg_box = tk.messagebox.showinfo('Information', 
+"""DUAL CREDIT IRC FAA PART 107""",icon='warning')   
+button33 = tk.Button(root, text='IRCFAA', command=IRCFAA, bg='Dark Blue', fg='white', width=8,height=3) 
+canvas1.create_window(991, 368, window=button33)
+
+#Biomedical
+
+def PLTW_BIOMED():
+    msg_box = tk.messagebox.showinfo('Information', 
+"""PLTW EOC* BIOMED BIOSCIENCE CORE SKILLS INSTITUTE (BCSI) IRC (LAB BASED)""",icon='warning')   
+button34 = tk.Button(root, text='PLTW_BIOMED', command=PLTW_BIOMED, bg='Dark Blue', fg='white', width=8,height=3) 
+canvas1.create_window(1345, 410, window=button34)
+
+def HERNDON():
+    msg_box = tk.messagebox.showinfo('Information', 
+"""HERNDON CNA&CMT STA DUAL CREDIT""",icon='warning')   
+button35 = tk.Button(root, text='HERNDON', command=HERNDON, bg='Dark Blue', fg='white', width=8,height=3) 
+canvas1.create_window(1433, 410, window=button35)
+
+def STA_DUAL():
+    msg_box = tk.messagebox.showinfo('Information', 
+"""STA_DUAL CREDIT & PLTW EOC*""",icon='warning')   
+button36 = tk.Button(root, text='STA DUAL', command=STA_DUAL, bg='Dark Blue', fg='white', width=7,height=3) 
+canvas1.create_window(1513, 410, window=button36)
+
+def PLTW_ACE():
+    msg_box = tk.messagebox.showinfo('Information', 
+"""PLTW EOC* & ACE/FMS CREDENTIAL""",icon='warning')   
+button37 = tk.Button(root, text='ACE/FMS', command=PLTW_ACE, bg='Dark Blue', fg='white', width=7,height=3) 
+canvas1.create_window(1588, 410, window=button37)
+
+def DUAL_CREDIT():
+    msg_box = tk.messagebox.showinfo('Information', 
+"""DUAL CREDIT & VET ASST. CERT.""",icon='warning')   
+button38 = tk.Button(root, text='DUAL_CREDIT', command=DUAL_CREDIT, bg='Dark Blue', fg='white', width=8,height=3) 
+canvas1.create_window(1675, 410, window=button38)
+
+
+tk.mainloop()
